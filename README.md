@@ -1,4 +1,4 @@
-# My AI Chat - HIRUY TECHNOLOGIES
+# Yene AI Chat - HIRUY TECHNOLOGIES
 
 A simple AI chat application built for a beginner web development project.
 
