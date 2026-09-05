@@ -1,141 +1,69 @@
-* { box-sizing: border-box; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple AI chat app built with HTML, CSS, JavaScript and Gemini.">
+  <title>My AI Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">Y</div>
+      <h2>Yene Chat</h2>
+      <p class="small-text">Your simple AI chat assistant</p>
 
-:root {
-  --background: #f4f6f8;
-  --sidebar: #ffffff;
-  --text: #20242a;
-  --muted: #727984;
-  --border: #dfe3e8;
-  --primary: #315efb;
-  --user: #315efb;
-  --assistant: #ffffff;
-  --input: #ffffff;
-}
+      <button class="new-btn" id="newChatBtn">+ New Chat</button>
 
-html.dark {
-  --background: #17191d;
-  --sidebar: #202328;
-  --text: #f0f2f4;
-  --muted: #a4aab3;
-  --border: #353a42;
-  --primary: #6f8cff;
-  --user: #4c6fff;
-  --assistant: #24282e;
-  --input: #24282e;
-}
+      <div class="menu-title">QUICK QUESTIONS</div>
+      <button class="quick-btn" data-prompt="Explain HTML to me like a beginner.">What is HTML?</button>
+      <button class="quick-btn" data-prompt="What is CSS and why do we use it?">What is CSS?</button>
+      <button class="quick-btn" data-prompt="Explain JavaScript in a simple way.">What is JavaScript?</button>
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--background);
-  color: var(--text);
-}
+      <div class="sidebar-bottom">
+        <button class="theme-btn" id="themeBtn">🌙 Dark Mode</button>
+        <button class="clear-btn" id="clearBtn">Clear Chat</button>
+      </div>
+    </aside>
 
-button, textarea { font: inherit; }
-button { cursor: pointer; }
+    <main class="main">
+      <header class="header">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div>
+          <h1>Welcome to Yene AI</h1>
+          <p><span class="online-dot"></span> Gemini assistant</p>
+        </div>
+      </header>
 
-.app { height: 100vh; display: flex; overflow: hidden; }
+      <section class="chat" id="chatArea">
+        <div class="welcome" id="welcome">
+          <div class="welcome-icon">AI</div>
+          <h2>Hello! 👋</h2>
+          <p>Ask me anything. I can help with learning, coding, writing and ideas.</p>
+          <div class="welcome-buttons">
+            <button data-prompt="Give me 5 beginner web development project ideas.">💡 Project ideas</button>
+            <button data-prompt="Teach me the basics of JavaScript.">📚 Learn JavaScript</button>
+          </div>
+        </div>
+      </section>
 
-.sidebar {
-  width: 245px;
-  background: var(--sidebar);
-  border-right: 1px solid var(--border);
-  padding: 24px 16px;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-}
+      <div class="composer-area">
+        <div class="status" id="status"></div>
+        <div class="composer">
+          <textarea id="prompt" rows="1" maxlength="2000" placeholder="Type your message..."></textarea>
+          <div class="composer-footer">
+            <span id="counter">0 / 2000</span>
+            <span class="hint">Enter = send · Shift + Enter = new line</span>
+            <button class="send-btn" id="sendBtn">Send</button>
+          </div>
+        </div>
+        <p class="note">My AI Chat may make mistakes. Check important information.</p>
+      </div>
+    </main>
+  </div>
 
-.logo {
-  width: 43px;
-  height: 43px;
-  border-radius: 10px;
-  background: var(--primary);
-  color: white;
-  display: grid;
-  place-items: center;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-.logo span { font-size: 11px; }
-.sidebar h2 { margin: 0; font-size: 18px; }
-.small-text { color: var(--muted); font-size: 12px; line-height: 1.5; }
-
-.new-btn, .quick-btn, .theme-btn, .clear-btn {
-  width: 100%;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text);
-  border-radius: 8px;
-  padding: 10px;
-  text-align: left;
-  margin-bottom: 8px;
-}
-.new-btn { background: var(--primary); color: white; border-color: var(--primary); text-align: center; font-weight: bold; margin: 12px 0 25px; }
-.quick-btn:hover, .theme-btn:hover, .clear-btn:hover { background: var(--background); }
-
-.menu-title { font-size: 10px; font-weight: bold; color: var(--muted); margin: 0 0 9px 3px; }
-.sidebar-bottom { margin-top: auto; }
-
-.main { min-width: 0; flex: 1; display: flex; flex-direction: column; }
-.header {
-  height: 68px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 25px;
-  background: var(--sidebar);
-  border-bottom: 1px solid var(--border);
-}
-.header h1 { margin: 0; font-size: 18px; }
-.header p { margin: 4px 0 0; font-size: 11px; color: var(--muted); }
-.online-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #31a866; margin-right: 4px; }
-.menu-btn { display: none; border: 0; background: transparent; color: var(--text); font-size: 22px; }
-
-.chat { flex: 1; overflow-y: auto; padding: 28px 18px; }
-.welcome { max-width: 650px; margin: 50px auto; text-align: center; }
-.welcome-icon { width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 12px; display: grid; place-items: center; margin: auto; font-weight: bold; }
-.welcome h2 { margin: 18px 0 8px; font-size: 28px; }
-.welcome p { color: var(--muted); font-size: 14px; }
-.welcome-buttons { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
-.welcome-buttons button { border: 1px solid var(--border); background: var(--sidebar); color: var(--text); border-radius: 8px; padding: 9px 12px; }
-
-.message { max-width: 760px; margin: 0 auto 16px; display: flex; gap: 9px; align-items: flex-start; }
-.message.user { justify-content: flex-end; }
-.avatar { width: 30px; height: 30px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; font-size: 10px; font-weight: bold; }
-.avatar.ai { background: var(--primary); color: white; }
-.avatar.user { background: #555b65; color: white; order: 2; }
-.bubble { max-width: 75%; background: var(--assistant); border: 1px solid var(--border); padding: 10px 13px; border-radius: 10px; line-height: 1.55; font-size: 14px; white-space: pre-wrap; word-break: break-word; }
-.user .bubble { background: var(--user); color: white; border-color: var(--user); }
-
-.loading { display: flex; gap: 4px; }
-.loading span { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; animation: bounce .8s infinite; }
-.loading span:nth-child(2) { animation-delay: .15s; }
-.loading span:nth-child(3) { animation-delay: .3s; }
-@keyframes bounce { 50% { transform: translateY(-4px); } }
-.typing::after { content: '|'; animation: blink .7s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-
-.composer-area { width: min(760px, calc(100% - 30px)); margin: 0 auto; padding-bottom: 15px; }
-.status { min-height: 18px; color: var(--muted); font-size: 11px; padding-left: 4px; }
-.composer { background: var(--input); border: 1px solid var(--border); border-radius: 10px; padding: 10px; }
-textarea { width: 100%; resize: none; max-height: 130px; border: 0; outline: 0; background: transparent; color: var(--text); line-height: 1.5; }
-.composer-footer { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 10px; }
-#counter { margin-right: auto; }
-.send-btn { background: var(--primary); border: 0; color: white; padding: 8px 15px; border-radius: 7px; font-weight: bold; }
-.send-btn:disabled { opacity: .5; cursor: not-allowed; }
-.note { text-align: center; color: var(--muted); font-size: 9px; margin: 7px 0 0; }
-
-.overlay { display: none; }
-
-@media (max-width: 700px) {
-  .sidebar { position: fixed; z-index: 5; top: 0; bottom: 0; left: 0; transform: translateX(-100%); transition: transform .2s; }
-  .sidebar.open { transform: translateX(0); }
-  .overlay.show { display: block; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 4; }
-  .menu-btn { display: block; }
-  .header { padding: 0 14px; }
-  .chat { padding: 20px 10px; }
-  .bubble { max-width: 82%; font-size: 13px; }
-  .hint { display: none; }
-  .composer-area { width: calc(100% - 16px); }
-}
+  <div class="overlay" id="overlay"></div>
+  <script src="script.js"></script>
+</body>
+</html>
