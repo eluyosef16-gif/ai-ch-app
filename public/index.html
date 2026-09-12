@@ -3,67 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A simple AI chat app built with HTML, CSS, JavaScript and Gemini.">
-  <title>My AI Chat</title>
+  <meta name="description" content="Yene AI, a simple and modern AI chat assistant.">
+  <title>Yene AI</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="app">
-    <aside class="sidebar" id="sidebar">
-      <div class="logo">Y</div>
-      <h2>Yene Chat</h2>
-      <p class="small-text">Your simple AI chat assistant</p>
 
-      <button class="new-btn" id="newChatBtn">+ New Chat</button>
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="brand-area">
+
+        <div class="logo">Y</div>
+
+        <div class="brand-text">
+          <h2>Yene AI</h2>
+          <p>Your intelligent assistant</p>
+        </div>
+
+      </div>
+
+      <button class="new-btn" id="newChatBtn">
+        <span class="plus-icon">+</span>
+        <span>New Chat</span>
+      </button>
 
       <div class="menu-title">QUICK QUESTIONS</div>
-      <button class="quick-btn" data-prompt="Explain HTML to me like a beginner.">What is HTML?</button>
-      <button class="quick-btn" data-prompt="What is CSS and why do we use it?">What is CSS?</button>
-      <button class="quick-btn" data-prompt="Explain JavaScript in a simple way.">What is JavaScript?</button>
 
-      <div class="sidebar-bottom">
-        <button class="theme-btn" id="themeBtn">🌙 Dark Mode</button>
-        <button class="clear-btn" id="clearBtn">Clear Chat</button>
+      <div class="quick-list">
+
+        <button class="quick-btn"
+          data-prompt="Explain HTML to me like a beginner.">
+          <span class="quick-icon">⌘</span>
+          <span>
+            <b>What is HTML?</b>
+            <small>Learn the basics</small>
+          </span>
+        </button>
+
+        <button class="quick-btn"
+          data-prompt="What is CSS and why do we use it?">
+          <span class="quick-icon">✦</span>
+          <span>
+            <b>What is CSS?</b>
+            <small>Understand styling</small>
+          </span>
+        </button>
+
+        <button class="quick-btn"
+          data-prompt="Explain JavaScript in a simple way.">
+          <span class="quick-icon">JS</span>
+          <span>
+            <b>What is JavaScript?</b>
+            <small>Learn programming</small>
+          </span>
+        </button>
+
       </div>
+
+      <!-- AI STATUS -->
+      <div class="ai-status-card">
+
+        <div class="status-icon">
+          <span></span>
+        </div>
+
+        <div>
+          <strong>AI Assistant</strong>
+          <small>Ready to help</small>
+        </div>
+
+        <div class="status-online"></div>
+
+      </div>
+
+      <!-- SIDEBAR BOTTOM -->
+      <div class="sidebar-bottom">
+
+        <button class="theme-btn" id="themeBtn">
+          <span>◐</span>
+          <span>Dark Mode</span>
+        </button>
+
+        <button class="clear-btn" id="clearBtn">
+          <span>⌫</span>
+          <span>Clear Chat</span>
+        </button>
+
+      </div>
+
     </aside>
 
+
+    <!-- MAIN -->
     <main class="main">
+
+      <!-- HEADER -->
       <header class="header">
-        <button class="menu-btn" id="menuBtn">☰</button>
-        <div>
-          <h1>Welcome to Yene AI</h1>
-          <p><span class="online-dot"></span> Gemini assistant</p>
+
+        <button class="menu-btn" id="menuBtn">
+          ☰
+        </button>
+
+        <div class="header-info">
+
+          <div class="header-title-row">
+
+            <div class="header-status-dot"></div>
+
+            <h1>Yene AI</h1>
+
+            <span class="beta-badge">AI ASSISTANT</span>
+
+          </div>
+
+          <p>Ask questions, learn, create and explore.</p>
+
         </div>
+
       </header>
 
+
+      <!-- CHAT -->
       <section class="chat" id="chatArea">
+
         <div class="welcome" id="welcome">
-          <div class="welcome-icon">AI</div>
-          <h2>Hello! 👋</h2>
-          <p>Ask me anything. I can help with learning, coding, writing and ideas.</p>
-          <div class="welcome-buttons">
-            <button data-prompt="Give me 5 beginner web development project ideas.">💡 Project ideas</button>
-            <button data-prompt="Teach me the basics of JavaScript.">📚 Learn JavaScript</button>
+
+          <div class="welcome-icon">
+            <span>AI</span>
           </div>
+
+          <div class="welcome-label">
+            YOUR AI ASSISTANT
+          </div>
+
+          <h2>
+            Hello! <span>👋</span>
+          </h2>
+
+          <p>
+            I'm Yene AI. I can help you learn, code, write,
+            brainstorm ideas and answer your questions.
+          </p>
+
+          <div class="welcome-buttons">
+
+            <button
+              data-prompt="Give me 5 beginner web development project ideas.">
+              <span>💡</span>
+              Project ideas
+            </button>
+
+            <button
+              data-prompt="Teach me the basics of JavaScript.">
+              <span>📚</span>
+              Learn JavaScript
+            </button>
+
+            <button
+              data-prompt="Give me some tips for learning programming.">
+              <span>✨</span>
+              Learning tips
+            </button>
+
+          </div>
+
         </div>
+
       </section>
 
+
+      <!-- COMPOSER -->
       <div class="composer-area">
+
         <div class="status" id="status"></div>
+
         <div class="composer">
-          <textarea id="prompt" rows="1" maxlength="2000" placeholder="Type your message..."></textarea>
+
+          <textarea
+            id="prompt"
+            rows="1"
+            maxlength="2000"
+            placeholder="Message Yene AI..."
+          ></textarea>
+
           <div class="composer-footer">
+
             <span id="counter">0 / 2000</span>
-            <span class="hint">Enter = send · Shift + Enter = new line</span>
-            <button class="send-btn" id="sendBtn">Send</button>
+
+            <span class="hint">
+              Enter to send · Shift + Enter for new line
+            </span>
+
+            <button
+              class="send-btn"
+              id="sendBtn"
+              aria-label="Send message">
+              Send
+            </button>
+
           </div>
+
         </div>
-        <p class="note">My AI Chat may make mistakes. Check important information.</p>
+
+        <p class="note">
+          Yene AI can make mistakes. Check important information.
+        </p>
+
       </div>
+
     </main>
+
   </div>
 
   <div class="overlay" id="overlay"></div>
+
   <script src="script.js"></script>
+
 </body>
 </html>
